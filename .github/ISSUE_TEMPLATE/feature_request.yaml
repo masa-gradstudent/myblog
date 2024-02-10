@@ -1,36 +1,40 @@
 name: 機能追加/Feature request
 description: 機能追加の要望テンプレート/Suggest an idea for this project
 title: "[FEATURES]:"
-labels: ["engancement"]
+labels: ["enhancement"] # ラベル名が正しいスペルであることを確認してください
 body:
   - type: textarea
     id: goal
-    attributes: 
-    label: 目的
-    description: 
-    validations: 機能を追加した目的を入力して下さい。
+    attributes:
+      label: 目的
+      description: 機能を追加した目的を入力してください。
+    validations:
       required: false
+
   - type: textarea
     id: background
-    attributes: 
-    label: 背景
-    description: 
-    validations: 機能を追加した背景を入力して下さい。
+    attributes:
+      label: 背景
+      description: 機能を追加した背景を入力してください。
+    validations:
       required: false
+
   - type: textarea
     id: proposal
-    attributes: 
-    label: 提案内容
-    description: 
-    validations: 追加したい機能の提案内容を入力して下さい。
+    attributes:
+      label: 提案内容
+      description: 追加したい機能の提案内容を入力してください。
+    validations:
       required: false
+
   - type: textarea
     id: others
     attributes:
       label: その他
-      description: 関連Issueや参考サイトなど、その他伝えたいことあれば入力して下さい。
+      description: 関連Issueや参考サイトなど、その他伝えたいことがあれば入力してください。
     validations:
       required: false
+
   - type: textarea
     id: learning
     attributes:
@@ -38,6 +42,3 @@ body:
       description: 学んだことをメモ書き程度でアウトプットしてみましょう！
     validations:
       required: false
-      
-
-
