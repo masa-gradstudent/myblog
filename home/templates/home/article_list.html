@@ -1,21 +1,18 @@
-
-
-
+{% extends 'home/home.html' %}
 {% load static %}
-{% extends 'home.html' %}
 
 {% block content %}
-    {% for post in posts %}
+    {% for article in articles %}
         <div class="card mb-4">
         <div class="card-body">
-            <h2 class="card-title">{{ post.title }}</h2>
+            <h2 class="card-title">{{ article.title }}</h2>
             <!-- HTMLタグを削除し、80文字だけ表示する -->
-            <p class="card-text">{{ post.content|truncatechars:80 | safe }}</p>
-            <a href="{% url 'post_detail' pk=post.id %}" class="btn btn-primary">Read More &rarr;</a>
+            <p class="card-text">{{ article.description|truncatechars:80 | safe }}</p>
+            <a href="{% url 'article_detail' pk=article.id %}" class="btn btn-primary">Read More &rarr;</a>
         </div>
         <div class="card-footer text-muted">
-            Posted on {{ post.created_at }}
+            Posted on {{ article.created_at }}
         </div>
         </div>
     {% endfor %}
-    {% endbolck content %}
+    {% endblock content %}

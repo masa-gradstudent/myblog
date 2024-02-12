@@ -8,8 +8,14 @@ def home_view(request):
 
 class ArticleListView(ListView):
     model = Article
-    template_name = 'article_list.html'
+    template_name = 'home/article_list.html'
+    #コンテキスト名を設定
+    context_object_name = 'articles'
+    
 
 class ArticleDetailView(DetailView):
     model = Article
-    template_name = 'article_detail.html '   
+
+    template_name = 'home/article_detail.html'   
+    #コンテキスト名を設定
+    context_object_name = 'article'
