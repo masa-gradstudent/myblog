@@ -39,7 +39,7 @@ class ArticleDetailView(DetailView):
         #フォームの入力値に問題がなければ、投稿に紐づけてから登録する
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.post = self.object
+            comment.article = self.object
             comment.save()
  
-        return redirect('post_detail', pk=self.object.pk)
+        return redirect('article_detail', pk=self.object.pk)
