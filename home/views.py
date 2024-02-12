@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from .models import Article
 from .forms import CommentForm
@@ -31,3 +31,15 @@ class ArticleDetailView(DetailView):
             'form': form,
         })
         return context
+    
+    #POSTで呼び出された場合はコメントを登録
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = CommentForm(data=self.request.POST or None)
+        #フォームの入力値に問題がなければ、投稿に紐づけてから登録する
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = self.object
+            comment.save()
+ 
+        return redirect('post_detail', pk=self.object.pk)
