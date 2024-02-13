@@ -7,10 +7,37 @@
     <div class="col-md-12">
       <h1>{{ article.title }}</h1>
       <div class="row">
-          {{ article.content | safe }}
-          <p>Created: {{ article.created_at }}</p>
+          {{ article.description | safe }}
+          <small class="text-body-secondary"> Posted on {{ article.created_at }}</small>
+        </div>
       </div>
     </div>
-  </div>
+    <!-- コメント -->
+    <h2>Comments</h2>
+    <ul class="list-unstyled">
+      {% for comment in comments %}
+        <li class="media my-4">
+          <div class="media-body">
+            <h5 class="mt-0 mb-1">{{ comment.name }}</h5>
+            <p>{% if comment.approved_comment %}
+              {{ comment.text }}
+              <!-- 未承認コメントは隠す -->
+              {% else %}
+              管理人の承認待ちです
+              {% endif %}</p>
+            <small>Created at: {{ comment.created_at }}</small>
+          </div>
+        </li>
+      <!-- コメントがないとき -->
+      {% empty %}
+        <li>No comments yet</li>
+      {% endfor %}
+      </ul>
+    <form method="post">
+      <!-- コメント投稿フォーム -->
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn-bd-primary">Post</button>
+    </form>
 </div>
 {% endblock content %}

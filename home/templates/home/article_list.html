@@ -3,16 +3,28 @@
 
 {% block content %}
     {% for article in articles %}
-        <div class="card mb-4">
-        <div class="card-body">
-            <h2 class="card-title">{{ article.title }}</h2>
-            <!-- HTMLタグを削除し、80文字だけ表示する -->
-            <p class="card-text">{{ article.description|truncatechars:80 | safe }}</p>
-            <a href="{% url 'article_detail' pk=article.id %}" class="btn btn-primary">Read More &rarr;</a>
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+    
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+              <div class="card shadow-sm">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                <div class="card-body">
+                  <p class="card-text">{{ article.title }}</p>
+                  <p class="card-text">{{ article.description|truncatechars:80 | safe }}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='{% url "article_detail" pk=article.id %}'">詳細</button>
+                    </div>
+                    <small class="text-body-secondary"> Posted on {{ article.created_at }}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+          </div>
         </div>
-        <div class="card-footer text-muted">
-            Posted on {{ article.created_at }}
-        </div>
-        </div>
-    {% endfor %}
-    {% endblock content %}
+      </div>    
+      {% endfor %}
+      {% endblock content %}
