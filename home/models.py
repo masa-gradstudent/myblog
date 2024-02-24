@@ -6,6 +6,7 @@ class Article(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
+    thumbnail = models.ImageField(upload_to='thumbnails', blank=True, null=True)
 
     def __str__(self):
         return self.title # 記事タイトルを返す
