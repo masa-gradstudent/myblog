@@ -5,18 +5,16 @@ from django.db import models
 from django.utils.html import format_html
 # Register your models here.
 
-# 管理画面の記事一覧を表示する列を指定
-class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created_at', 'updated_at')
 
 #投稿詳細管理画面にコメントも追加
 class CommentInline(admin.TabularInline):
     model = Comment
     extra = 0
     fields = ('author', 'text', 'approved_comment')
- 
+
+# 管理画面の記事一覧を表示する列を指定
 class ArticleAdmin(admin.ModelAdmin):
-     list_display = ('title', 'created_at', 'updated_at', 'get_comment_count')
+     list_display = ('title', 'created_at', 'updated_at','thumbnail', 'get_comment_count')
      inlines = (CommentInline,)
     
      #コメント数を測定して、記事一覧画面に反映
